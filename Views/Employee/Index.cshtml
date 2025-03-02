@@ -1,0 +1,43 @@
+@model IEnumerable<EmployeeMangment.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Link to Create a new Employee -->
+<p>
+    <a href="@Url.Action("Create", "Employee")" class="btn btn-primary">Create New Employee</a>
+</p>
+
+<!-- Table to list all Employees -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Name</td>
+                <td>@employee.Position</td>
+                <td>@employee.Salary</td>
+                <td>
+                    <!-- Edit button -->
+                    <a href="@Url.Action("Edit", "Employee", new { id = employee.Id })" class="btn btn-warning">Edit</a>
+
+                    <!-- Delete button -->
+                    <a href="@Url.Action("Delete", "Employee", new { id = employee.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
